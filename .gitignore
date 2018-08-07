@@ -1,0 +1,6 @@
+/esp-open-sdk
+/lib
+/obj
+gcc-path
+webox.sublime-workspace
+CliBox
