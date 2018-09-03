@@ -18,7 +18,7 @@ static double 	ICACHE_FLASH_ATTR calculate_temp	    (int res);
 static void 	ICACHE_FLASH_ATTR print_double	        (double d);
 extern int      ICACHE_FLASH_ATTR system_adc_read       (void);
 
-double          ICACHE_FLASH_ATTR measure_temperature   (void) {
+double          ICACHE_FLASH_ATTR measure_NTC_temperature   (void) {
 
     /* Variables */
 	double volt = 0,

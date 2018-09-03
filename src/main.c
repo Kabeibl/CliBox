@@ -12,40 +12,37 @@ static 			    os_timer_t 	timer;
 
 /* PROTOTYPES */
 extern void 	uart_div_modify	(int i, int j);
+extern void 	i2c_master_gpio_init(void);
+extern void 	system_deep_sleep(int s);
 static void 	init 			(void);
 static void		blink 			(void);
 
 /* TIMER CALLBACK FUNCTION */
-void timer_cb(void *arg) {
+void 	ICACHE_FLASH_ATTR  timer_cb(void *arg) {
 
-	/* Declare variables */
-	double temperature,
-		   fine_dust,
-		   humidity,
-		   pressure,
-		   altitude;
+	// /* Declare variables */
+	// double fine_dust, 
+	// 	   temperature,
+	// 	   pressure,
+	// 	   tmp[2];
 
-	/* Measure temperature from NTC_MF52-thermistor */
-	temperature = measure_temperature();
+	
 
 	/* Measure fine dust from GP2Y1010AU0F fine dust sensor */
-	fine_dust = measure_fine_dust();
+	// fine_dust = measure_fine_dust();
 
-	/* Measure humidity from BMP280 Barometric Pressure & Altitude sensor */
-	// humidity = measure_humidity();
+	/* Measure temperature and pressure from BMP280 */
+	// BMP280_Measure(tmp);
+	// temperature = tmp[0];
+	// pressure = tmp[1];
 
-	/* Measure pressure from BMP280 Barometric Pressure & Altitude sensor */
-	// pressure = measure_pressure();
-
-	/* Measure altitude from BMP280 Barometric Pressure & Altitude sensor */
-	// altitude = measure_altitude();
+	/* Measure temperature from NTC_MF52-thermistor */
+	// temperature = measure_NTC_temperature();
 
 	/* Send sensor data to cloud over WiFi */
 	// send_sensor_data(temperature,
 	// 				 fine_dust
-	// 				 humidity,
-	// 				 pressure,
-	// 				 altitude);
+	// 				 pressure);
 
 
 	/* 
@@ -69,6 +66,7 @@ void  	ICACHE_FLASH_ATTR init 				(void) {
 	os_timer_setfn(&timer, timer_cb, NULL); 		/* Setup timer */
 	os_timer_arm(&timer, 500, 1); 					/* Set timer repeating with 500ms delay */
 	i2c_master_gpio_init(); 						/* Initialize I2C */
+	BMP_Init(); 									/* Initialize BMP280-module */
 }
 
 void	ICACHE_FLASH_ATTR blink 	   		(void) {

@@ -7,6 +7,7 @@
 /* Constants */
 #define SLOPE           7.86
 #define Y_INTERSECT     0.614
+#define LED_PIN         4
 
 /* Function declarations */
 void        ICACHE_FLASH_ATTR  led_on                   (void);

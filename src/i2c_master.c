@@ -28,6 +28,8 @@
 
 #include "i2c_master.h"
 
+
+
 LOCAL uint8 m_nLastSDA;
 LOCAL uint8 m_nLastSCL;
 
@@ -223,13 +225,13 @@ i2c_master_getAck(void)
 * Parameters   : NONE
 * Returns      : true : get ack ; false : get nack
 *******************************************************************************/
-bool ICACHE_FLASH_ATTR
-i2c_master_checkAck(void)
+int ICACHE_FLASH_ATTR
+ i2c_master_checkAck(void)
 {
     if(i2c_master_getAck()){
-        return FALSE;
+        return 0;
     }else{
-        return TRUE;
+        return 1;
     }
 }
 

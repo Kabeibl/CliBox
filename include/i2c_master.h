@@ -25,6 +25,8 @@
 #ifndef __I2C_MASTER_H__
 #define __I2C_MASTER_H__
 
+#include "stdint.h"
+
 #define I2C_MASTER_SDA_MUX PERIPHS_IO_MUX_GPIO2_U
 #define I2C_MASTER_SCL_MUX PERIPHS_IO_MUX_MTMS_U
 #define I2C_MASTER_SDA_GPIO 2
@@ -38,6 +40,9 @@
 //#define I2C_MASTER_SCL_GPIO 0
 //#define I2C_MASTER_SDA_FUNC FUNC_GPIO2
 //#define I2C_MASTER_SCL_FUNC FUNC_GPIO0
+
+#define I2C_READ    0x01
+#define I2C_WRITE   0x00
 
 #if 0
 #define I2C_MASTER_GPIO_SET(pin)  \
@@ -69,12 +74,12 @@ void i2c_master_init(void);
 #define i2c_master_wait    os_delay_us
 void i2c_master_stop(void);
 void i2c_master_start(void);
-void i2c_master_setAck(uint8 level);
-uint8 i2c_master_getAck(void);
-uint8 i2c_master_readByte(void);
-void i2c_master_writeByte(uint8 wrdata);
+void i2c_master_setAck(uint8_t level);
+uint8_t i2c_master_getAck(void);
+uint8_t i2c_master_readByte(void);
+void i2c_master_writeByte(uint8_t wrdata);
 
-bool i2c_master_checkAck(void);
+int i2c_master_checkAck(void);
 void i2c_master_send_ack(void);
 void i2c_master_send_nack(void);
 

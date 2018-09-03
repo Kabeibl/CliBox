@@ -11,11 +11,10 @@ LINK_TARGET=CliBox
 BINARY=$(LINK_TARGET)-0x00000.bin
 
 CC=xtensa-lx106-elf-gcc	
-CFLAGS=-I$(IDIR) -g -Wall -mlongcalls
+CFLAGS=-I$(IDIR) -g -Wall -mlongcalls -DICACHE_FLASH
 
 SRCS=$(wildcard $(SRC_DIR)/*.c)
 OBJS=$(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
-
 
 $(BINARY): $(LINK_TARGET)
 	esptool.py elf2image $^
