@@ -19,7 +19,15 @@ double      ICACHE_FLASH_ATTR  voltage_to_dust_density  (uint16 voltage);
 double      ICACHE_FLASH_ATTR  measure_fine_dust        (void) {
 
     uint16 voltage;
-    double fine_dust;
+    double fine_dust,
+           avg_voltage;
+
+    for(int i = 0; i < 10; i++) {
+        led_on();
+        avg_voltage += ADS_read_adc(SLAVE_ADDR_1_GND);
+        led_off();
+        os_delay_us(320);
+    }
 
     led_on();                                       // Turn led on
     voltage = ADS_read_adc(SLAVE_ADDR_1_GND);       // Read photoresistor

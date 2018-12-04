@@ -1,6 +1,17 @@
+.gitignore
 /esp-open-sdk
 /lib
 /obj
+/Cube
+/.vscode
 gcc-path
 webox.sublime-workspace
 CliBox
+bme280.c
+bme280.h
+flash.sh
+CliBox-0x00000.bin
+CliBox-0x10000.bin
+Device.dcm
+Device.lib
+STM32CubeMX Project.ioc

@@ -1,5 +1,6 @@
 #include "ADS_1015.h"
 #include "gpio.h"
+#include "i2c_master.h"
 
 /* Registers */
 #define CONVERSION_REG          (0x00)
@@ -56,15 +57,6 @@
 /* Comparator mode */
 #define CONF_COMP_MODE_TRAD     (0x00)      // Traditional comparator (Default)
 #define CONF_COMP_MODE_WINDOW   (0x01)      // Window comparator
-
-
-/* Prototypes */
-void        i2c_master_start                (void);
-void        i2c_master_stop                 (void);
-void        i2c_master_send_ack             (void);
-int         i2c_master_checkAck             (void);
-uint8       i2c_master_readByte             (void);
-void        i2c_master_writeByte            (uint8 wrdata);
 
 /* Initialise ADS1015 */
 void        ICACHE_FLASH_ATTR  ADS_init     (void) {

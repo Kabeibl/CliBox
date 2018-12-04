@@ -25,13 +25,13 @@
 #include "ets_sys.h"
 #include "osapi.h"
 #include "gpio.h"
-
 #include "i2c_master.h"
-
-
 
 LOCAL uint8 m_nLastSDA;
 LOCAL uint8 m_nLastSCL;
+
+extern void ets_isr_unmask(int num);
+extern void ets_isr_mask(uint32_t ints);
 
 /******************************************************************************
  * FunctionName : i2c_master_setDC
@@ -226,7 +226,7 @@ i2c_master_getAck(void)
 * Returns      : true : get ack ; false : get nack
 *******************************************************************************/
 int ICACHE_FLASH_ATTR
- i2c_master_checkAck(void)
+i2c_master_checkAck(void)
 {
     if(i2c_master_getAck()){
         return 0;
@@ -310,23 +310,23 @@ i2c_master_writeByte(uint8 wrdata)
     uint8 dat;
     sint8 i;
 
-    i2c_master_wait(5);
+    // i2c_master_wait(5);
 
     i2c_master_setDC(m_nLastSDA, 0);
-    i2c_master_wait(5);
+    // i2c_master_wait(5);
 
     for (i = 7; i >= 0; i--) {
         dat = wrdata >> i;
         i2c_master_setDC(dat, 0);
-        i2c_master_wait(5);
+        // i2c_master_wait(5);
         i2c_master_setDC(dat, 1);
-        i2c_master_wait(5);
+        // i2c_master_wait(5);
 
         if (i == 0) {
-            i2c_master_wait(3);   ////
+            // i2c_master_wait(3);   ////
         }
 
         i2c_master_setDC(dat, 0);
-        i2c_master_wait(5);
+        // i2c_master_wait(5);
     }
 }

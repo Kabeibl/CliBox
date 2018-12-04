@@ -7,6 +7,19 @@
         "rope": "c",
         "bitset": "c",
         "dynamic_bitset": "c",
-        "i2c_master.h": "c"
+        "i2c_master.h": "c",
+        "ads_1015.h": "c",
+        "*.tcc": "c",
+        "system_error": "c",
+        "functional": "c",
+        "tuple": "c",
+        "type_traits": "c",
+        "bmp280.h": "c",
+        "*.inc": "cpp",
+        "clibox_debug.h": "c",
+        "stdint.h": "c",
+        "ets_sys.h": "c",
+        "ratio": "c",
+        "istream": "cpp"
     }
 }
